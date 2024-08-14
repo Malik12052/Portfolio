@@ -1,9 +1,15 @@
-import { Html, Head, Main, NextScript } from "next/document";
+// pages/_document.js
+import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
     <Html lang="en">
-      <Head />
+      <Head>
+        {/* Cinzel font */}
+        <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet" />
+        {/* Matemasie font */}
+        <link href="https://fonts.googleapis.com/css2?family=Matemasie:wght@400&display=swap" rel="stylesheet" />
+      </Head>
       <body>
         <Main />
         <NextScript />
