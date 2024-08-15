@@ -1,4 +1,4 @@
-import {Example} from '../components/Header';
+import Example from '../components/Header';
 import {AuroraHero} from '../components/Hero';
   import {RevealBento} from '../components/RevealBento';
 
