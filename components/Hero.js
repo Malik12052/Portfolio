@@ -34,27 +34,32 @@ export const AuroraHero = () => {
       style={{
         backgroundImage,
       }}
-      className="relative grid min-h-screen place-content-center overflow-hidden bg-gray-950 px-4 py-24 text-gray-200"
+      className="relative min-h-screen overflow-hidden bg-gray-950 px-4 py-24 text-gray-200"
     >
+      <motion.h1
+        className="absolute top-0 left-0 right-0 text-center text-3xl font-medium leading-tight sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight matemasie-regular"
+        style={{
+          backgroundImage: textGradient,
+          backgroundClip: 'text',
+          color: 'transparent',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+        animate={{
+          scale: [1, 1.05, 1], // Subtle scaling effect
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "mirror",
+        }}
+      >
+        Gabriel Felix
+      </motion.h1>
+
       <div className="relative z-10 flex flex-col items-center md:flex-row md:justify-between md:gap-12">
         <div className="flex flex-col items-center md:items-start">
-          <motion.h1
-            className="max-w-3xl bg-clip-text text-center text-3xl font-medium leading-tight text-transparent sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight matemasie-regular"
-            style={{
-              backgroundImage: textGradient,
-            }}
-            animate={{
-              scale: [1, 1.05, 1], // Subtle scaling effect
-            }}
-            transition={{
-              duration: 4,
-              ease: "easeInOut",
-              repeat: Infinity,
-              repeatType: "mirror",
-            }}
-          >
-            Gabriel Felix 
-          </motion.h1>  
           <motion.p
             className="my-6 max-w-xl text-center text-base leading-relaxed md:text-lg md:leading-relaxed matemasie-regular"
             initial={{ opacity: 0 }}
@@ -104,9 +109,13 @@ export const AuroraHero = () => {
 
       <div className="absolute inset-0 z-0">
         <Canvas>
-          <Stars radius={50} count={2500} factor={4} fade speed={2} />
-        </Canvas>
+          <Stars radius={150} count={5000} factor={35} fade speed={1} /> 
+        </Canvas> 
       </div>
+
+ 
+    
+      
     </motion.section>
   );
 };

@@ -1,5 +1,5 @@
-import { useMotionTemplate, useMotionValue, animate } from "framer-motion";
 import { useEffect } from "react";
+import { useMotionValue, useMotionTemplate, animate } from "framer-motion";
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 
@@ -13,11 +13,12 @@ export const useGradientEffect = () => {
       repeat: Infinity,
       repeatType: "mirror",
     });
-  }, [color]);
+  }, []);
 
-  const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;
+  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})`;
   const border = useMotionTemplate`1px solid ${color}`;
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
+  const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;
 
-  return { textGradient, border, boxShadow };
+  return { backgroundImage, border, boxShadow, textGradient };
 };
