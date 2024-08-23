@@ -4,7 +4,7 @@ import {AuroraHero} from '../components/Hero';
 
 export default function Home() {
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
+    <div style={{  textAlign: 'center' }}>
       <Example />
       <AuroraHero />
       <RevealBento />

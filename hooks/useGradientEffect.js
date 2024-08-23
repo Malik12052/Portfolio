@@ -15,7 +15,7 @@ export const useGradientEffect = () => {
     });
   }, []);
 
-  const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 0%, #020617 50%, ${color})`;
+  const backgroundImage = useMotionTemplate`linear-gradient(180deg, #020617, ${color})`;
   const border = useMotionTemplate`1px solid ${color}`;
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
   const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;

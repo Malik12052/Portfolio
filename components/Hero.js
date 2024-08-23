@@ -1,6 +1,6 @@
 import { Stars } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import 'animate.css';
 import {
@@ -10,6 +10,7 @@ import {
   animate,
 } from "framer-motion";
 import * as THREE from 'three';
+import { a, useSpring } from '@react-spring/three';
 
 const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
 
@@ -29,6 +30,28 @@ export const AuroraHero = () => {
   const border = useMotionTemplate`1px solid ${color}`;
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
   const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;
+
+  const SphereAnimation = () => {
+    const sphereRef = useRef();
+    const { scale, rotation } = useSpring({
+      scale: [1, 1.2, 1],
+      rotation: [0, Math.PI * 2, 0],
+      from: { scale: [1, 7, 1], rotation: [1, 1, 1] },
+      config: { duration: Infinity },
+      loop: true,
+    });
+
+    useFrame(() => {
+      sphereRef.current.rotation.y += 0.01; // Continuous rotation
+    });
+
+    return (
+      <a.points ref={sphereRef} scale={scale} rotation={rotation} position={[0, -5.25, 0]}>
+        <sphereGeometry args={[2, 35, 32]} />
+        <a.pointsMaterial color="#ffd700" size={0.1} />
+      </a.points>
+    );
+  };
 
   return (
     <motion.section
@@ -64,27 +87,26 @@ export const AuroraHero = () => {
       </motion.div>
 
       <motion.h1
-  className="text-center text-2xl font-medium leading-tight sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight matemasie-regular mt-48" // Changed mt-4 to mt-24
-  style={{
-    backgroundImage: textGradient,
-    backgroundClip: 'text',
-    color: 'transparent',
-    WebkitBackgroundClip: 'text',
-    WebkitTextFillColor: 'transparent',
-  }}
-  animate={{
-    scale: [1.5, 0.55, 1], // Subtle scaling effect
-  }}
-  transition={{
-    duration: 4,
-    ease: "easeInOut",
-    repeat: Infinity,
-    repeatType: "mirror",
-  }}
->
-  Gabriel Felix
-</motion.h1>
-
+        className="text-center text-2xl font-medium leading-tight sm:text-5xl sm:leading-tight md:text-7xl md:leading-tight matemasie-regular mt-48"
+        style={{
+          backgroundImage: textGradient,
+          backgroundClip: 'text',
+          color: 'transparent',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+        }}
+        animate={{
+          scale: [1.5, 0.55, 1], // Subtle scaling effect
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+          repeat: Infinity,
+          repeatType: "mirror",
+        }}
+      >
+        Gabriel Felix
+      </motion.h1>
 
       <motion.p
         className="my-6 max-w-xxl text-center text-2xl leading-relaxed md:text-4xl md:leading-relaxed matemasie-regular"
@@ -128,10 +150,7 @@ export const AuroraHero = () => {
       <div className="absolute inset-0 z-0">
         <Canvas>
           <Stars radius={350} count={1000} factor={70} fade speed={1} />
-          <points position={[0, -5.25, 0]}>
-            <sphereGeometry args={[2, 35, 32]} />
-            <pointsMaterial color="#ffffff" size={0.05} />
-          </points>
+          <SphereAnimation />
         </Canvas>
       </div>
     </motion.section>

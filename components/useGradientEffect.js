@@ -1,23 +1,25 @@
-import { useMotionTemplate, useMotionValue, animate } from "framer-motion";
-import { useEffect } from "react";
+import React from "react";
+import { useGradientEffect } from "./useGradientEffect";
 
-const COLORS_TOP = ["#13FFAA", "#1E67C6", "#CE84CF", "#DD335C"];
+const GradientBackground = () => {
+  const { backgroundImage } = useGradientEffect();
 
-export const useGradientEffect = () => {
-  const color = useMotionValue(COLORS_TOP[0]);
-
-  useEffect(() => {
-    animate(color, COLORS_TOP, {
-      ease: "easeInOut",
-      duration: 10,
-      repeat: Infinity,
-      repeatType: "mirror",
-    });
-  }, [color]);
-
-  const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;
-  const border = useMotionTemplate`1px solid ${color}`;
-  const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
-
-  return { textGradient, border, boxShadow };
+  return (
+    <div
+      style={{
+        backgroundImage,
+        height: "100vh",
+        width: "100%",
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
+      {/* Your page content goes here */}
+      <h1 style={{ color: "white", textAlign: "center", paddingTop: "40vh" }}>
+        Welcome to My Gradient Page!
+      </h1>
+    </div>
+  );
 };
+
+export default GradientBackground;
