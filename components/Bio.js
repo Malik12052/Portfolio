@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion, useMotionTemplate, useMotionValue, animate, useSpring, useTransform } from "framer-motion";
+import { motion, useMotionTemplate, useMotionValue, animate } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { FiArrowRight, FiMail, FiMapPin } from "react-icons/fi";
 import { SiGithub, SiTwitter, SiSoundcloud, SiInstagram } from "react-icons/si";
@@ -33,7 +33,7 @@ export const Bio = () => {
         backgroundImage,
       }}
     >
-    
+      
       <motion.div
         initial="initial"
         animate="animate"
@@ -58,7 +58,6 @@ export const Bio = () => {
     </div>
   );
 };
-
 const Block = ({ className, border, boxShadow, ...rest }) => {
   return (
     <motion.div
@@ -102,6 +101,7 @@ const HeaderBlock = ({ textGradient }) => (
     />
     <h1
       className="mb-12 text-4xl font-medium leading-tight"
+      
     >
       Hi, I'm Gabriel.{" "}
       <span className="text-white">
@@ -117,118 +117,78 @@ const HeaderBlock = ({ textGradient }) => (
   </Block>
 );
 
-const SocialsBlock = () => {
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const rotateX = useTransform(y, [-100, 100], [10, -10]);
-  const rotateY = useTransform(x, [-100, 100], [-10, 10]);
-  const springConfig = { stiffness: 400, damping: 30 };
-  const scale = useSpring(1, springConfig);
-
-  const handleMouseMove = (e) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    x.set(e.clientX - rect.left - rect.width / 2);
-    y.set(e.clientY - rect.top - rect.height / 2);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-    scale.set(1);
-  };
-
-  return (
-    <motion.div
-      className="col-span-12 md:col-span-6 p-4 rounded-lg border-2 border-transparent"
-      style={{
-        background: 'linear-gradient(135deg, rgba(19,255,170,0.5), rgba(221,51,92,0.5))',
-        borderImageSlice: 1,
-        borderWidth: '2px',
-        borderImageSource: 'linear-gradient(135deg, #13FFAA, #DD335C)',
-        boxShadow: '0px 4px 24px rgba(19,255,170,0.5)',
-        perspective: 1000,
+const SocialsBlock = () => (
+  <>
+    <Block
+      whileHover={{
+        rotate: "2.5deg",
+        scale: 1.1,
       }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
-      animate={{ scale }}
+      className="col-span-6 bg-orange-500 md:col-span-3"
     >
-      <motion.div style={{ rotateX, rotateY }}>
-        <Block
-          whileHover={{
-            rotate: "2.5deg",
-            scale: 1.2,
-            backgroundColor: "rgba(255, 140, 0, 0.8)",
-          }}
-          className="col-span-6 bg-orange-500 md:col-span-3"
-        >
-          <a
-            href="https://soundcloud.com/feelx1"
-            className="grid h-full place-content-center text-3xl text-white"
-          >
-            <SiSoundcloud />
-          </a>
-        </Block>
-        <Block
-          whileHover={{
-            rotate: "-2.5deg",
-            scale: 1.2,
-            backgroundColor: "rgba(0, 128, 0, 0.8)",
-          }}
-          className="col-span-6 bg-green-600 md:col-span-3"
-        >
-          <a
-            href="https://github.com/Malik12052"
-            className="grid h-full place-content-center text-3xl text-white"
-          >
-            <SiGithub />
-          </a>
-        </Block>
-        <Block
-          whileHover={{
-            rotate: "-2.5deg",
-            scale: 1.2,
-            backgroundColor: "rgba(255, 20, 147, 0.8)",
-          }}
-          className="col-span-6 bg-pink-500 md:col-span-3"
-        >
-          <a
-            href="https://www.instagram.com/_feelx_/?igsh=MTFkeTFzN243bGxmaQ%3D%3D&utm_source=qr&fbclid=IwY2xjawEq0BpleHRuA2FlbQIxMAABHQRM8-635f_bofWglAf_rKlpsTcdTpFdFsSkG1WYSQO8T1NDSCj2uJcIZA_aem_FDBNISvNJ0bTKeTs_nwTgg"
-            className="grid h-full place-content-center text-3xl text-white"
-          >
-            <SiInstagram />
-          </a>
-        </Block>
-        <Block
-          whileHover={{
-            rotate: "2.5deg",
-            scale: 1.2,
-            backgroundColor: "rgba(30, 144, 255, 0.8)",
-          }}
-          className="col-span-6 bg-blue-500 md:col-span-3"
-        >
-          <a
-            href="https://x.com/Bearsace12052"
-            className="grid h-full place-content-center text-3xl text-white"
-          >
-            <SiTwitter />
-          </a>
-        </Block>
-      </motion.div>
-    </motion.div>
-  );
-};
+      <a
+        href="YOUR_SOUNDCLOUD_URL" // Replace with your SoundCloud profile link
+        className="grid h-full place-content-center text-3xl text-white"
+      >
+        <SiSoundcloud />
+      </a>
+    </Block>
+    <Block
+      whileHover={{
+        rotate: "-2.5deg",
+        scale: 1.1,
+      }}
+      className="col-span-6 bg-green-600 md:col-span-3"
+    >
+      <a
+        href="#"
+        className="grid h-full place-content-center text-3xl text-white"
+      >
+        <SiGithub />
+      </a>
+    </Block>
+    <Block
+      whileHover={{
+        rotate: "-2.5deg",
+        scale: 1.1,
+      }}
+      className="col-span-6 bg-zinc-50 md:col-span-3"
+    >
+      <a
+        href="#"
+        className="grid h-full place-content-center text-3xl text-black"
+      >
+        <SiInstagram />
+      </a>
+    </Block>
+    <Block
+      whileHover={{
+        rotate: "2.5deg",
+        scale: 1.1,
+      }}
+      className="col-span-6 bg-blue-500 md:col-span-3"
+    >
+      <a
+        href="#"
+        className="grid h-full place-content-center text-3xl text-white"
+      >
+        <SiTwitter />
+      </a>
+    </Block>
+  </>
+);
 
 const AboutBlock = () => (
   <Block className="col-span-12 text-3xl leading-snug">
     <p>
-      
-      <span className="text-zinc-400">
-      My passion is to help bring peoples dreams to reality. I build with Next.js, Javascript, React, Tailwind CSS, Solidity for blockchain and Framer Motion. Another things i do is make Jewlery. I create music using Ableton and the top of the line plugins. I also have skills in graphic designs. Connect with me and lets make your dreams come true! 
-</span>
-          </p>
+      My passion is building cool stuff.{" "}
+      {/* <span className="text-zinc-400"> */}
+      My passion is to help bring peoples dreams to reality. I build with Next.js, Javascript, React, Tailwind CSS, Solidity for blockchain and Framer Motion. Another things i do is make  I create music using Ableton and the top of the line plugins. I also have skills creating graphic designs. Connect with me and lets make your dreams come true!         I build primarily with React, Tailwind CSS, and Framer Motion. I love
+        this stack so much that I even built a website about it. I've made over
+        a hundred videos on the subject across YouTube and TikTok.
+    </p>
   </Block>
 );
-
 
 const LocationBlock = () => (
   <Block className="col-span-12 flex flex-col items-center gap-4 md:col-span-3">
@@ -287,7 +247,7 @@ const Footer = () => {
       <p className="text-center text-zinc-400">
         Made with ❤️ by{" "}
         <a href="#" className="text-red-300 hover:underline">
-          Your's Truly
+          @tomisloading
         </a>
       </p>
     </footer>
