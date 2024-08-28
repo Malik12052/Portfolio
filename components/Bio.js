@@ -223,7 +223,7 @@ const AboutBlock = () => (
     <p>
       
       <span className="text-zinc-400">
-      My passion is to help bring peoples dreams to reality. I build with Next.js, Javascript, React, Tailwind CSS, Solidity for blockchain and Framer Motion. Another things i do is make Jewlery. I create music using Ableton and the top of the line plugins. I also have skills in graphic designs. Connect with me and lets make your dreams come true! 
+      My passion is to help bring peoples dreams to reality. I build with Next.js, Javascript, React, Tailwind CSS, Solidity for blockchain and Framer Motion. Another thing i do is make Jewlery. I create music using Ableton and the top of the line plugins. I also have skills in graphic design. Connect with me and lets make your dreams come true! 
 </span>
           </p>
   </Block>
