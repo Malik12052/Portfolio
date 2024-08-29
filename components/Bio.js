@@ -155,7 +155,7 @@ const SocialsBlock = () => {
       <motion.div style={{ rotateX, rotateY }}>
         <Block
           whileHover={{
-            rotate: "2.5deg",
+            rotate: "1.5deg", 
             scale: 1.2,
             backgroundColor: "rgba(255, 140, 0, 0.8)",
           }}
@@ -170,7 +170,7 @@ const SocialsBlock = () => {
         </Block>
         <Block
           whileHover={{
-            rotate: "-2.5deg",
+            rotate: "-1.5deg",
             scale: 1.2,
             backgroundColor: "rgba(0, 128, 0, 0.8)",
           }}
@@ -185,7 +185,7 @@ const SocialsBlock = () => {
         </Block>
         <Block
           whileHover={{
-            rotate: "-2.5deg",
+            rotate: "-1.5deg",
             scale: 1.2,
             backgroundColor: "rgba(255, 20, 147, 0.8)",
           }}
@@ -200,7 +200,7 @@ const SocialsBlock = () => {
         </Block>
         <Block
           whileHover={{
-            rotate: "2.5deg",
+            rotate: "1.5deg",
             scale: 1.2,
             backgroundColor: "rgba(30, 144, 255, 0.8)",
           }}

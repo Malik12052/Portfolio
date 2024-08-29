@@ -1,6 +1,6 @@
 import { Stars, Points, PointMaterial } from "@react-three/drei";
-import { Canvas } from "@react-three/fiber";
-import React, { useEffect } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import React, { useEffect, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import 'animate.css';
 import {
@@ -25,7 +25,6 @@ export const RevealBento = () => {
     });
   }, []);
 
-  // Updated backgroundImage for a multi-layered gradient
   const backgroundImage = useMotionTemplate`radial-gradient(125% 125% at 50% 100%, #020617 50%, ${color}), linear-gradient(to top, #1E1E2C, #23252E)`;
   const border = useMotionTemplate`1px solid ${color}`;
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
@@ -42,6 +41,23 @@ export const RevealBento = () => {
     );
   };
 
+  const SphereAnimation = () => {
+    const sphereRef = useRef();
+
+    useFrame(() => {
+      sphereRef.current.rotation.x += 0.01;
+      sphereRef.current.rotation.y += 0.01;
+      sphereRef.current.rotation.z += 0.01;
+    });
+
+    return (
+      <points ref={sphereRef} position={[0, -5.25, 0]} scale={[0.8, 3.2, 0.8]}>
+        <sphereGeometry args={[1.8, 35, 32]} />
+        <pointsMaterial color="#13FFAA" size={0.1} />
+      </points>
+    );
+  };
+
   return (
     <motion.section
       style={{
@@ -49,13 +65,16 @@ export const RevealBento = () => {
       }}
       className="relative min-h-screen overflow-hidden bg-gray-950 px-4 py-24 md:py-32 lg:py-40 text-gray-200"
     >
-      <Bio />  
+      <div className="mb-8"> {/* Add margin to space the social blocks down */}
+        <Bio />
+      </div>
 
       <div className="absolute inset-0 z-0">
-        <Canvas>
+        <Canvas camera={{ position: [0, 0, 10] }}>
           <Stars radius={120} count={3000} factor={20} saturation={0.5} fade speed={0.8} />
           <Particles />
-        </Canvas> 
+          <SphereAnimation />
+        </Canvas>
       </div>
 
       <motion.div
