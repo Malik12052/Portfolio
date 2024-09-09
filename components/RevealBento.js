@@ -51,7 +51,7 @@ export const RevealBento = () => {
     });
 
     return (
-      <points ref={sphereRef} position={[0, -5.25, 0]} scale={[0.8, 3.2, 0.8]}>
+      <points ref={sphereRef} position={[0, .25, 0]} scale={[0.8, 3.2, 0.8]}>
         <sphereGeometry args={[1.8, 35, 32]} />
         <pointsMaterial color="#13FFAA" size={0.1} />
       </points>

@@ -1,5 +1,5 @@
 import { SiInstagram, SiLinkedin, SiTwitter, SiYoutube } from "react-icons/si";
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { FiArrowRight } from "react-icons/fi";
 
@@ -72,15 +72,25 @@ const NavLink = ({ children, href, setActive }) => {
 };
 
 const HamburgerButton = ({ active, setActive }) => {
+  const audioRef = useRef(null);
+
+  const handleClick = () => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
+    setActive(!active);
+  };
+
   return (
     <motion.button
       initial={false}
       animate={active ? "open" : "closed"}
-      onClick={() => setActive(!active)}
+      onClick={handleClick}
       className={`group fixed right-4 top-4 z-50 h-20 w-20 bg-gray-900 text-white transition-all ${
         active ? "rounded-bl-xl rounded-tr-xl" : "rounded-xl"
       }`}
     >
+      <audio ref={audioRef} src="/click-sound.mp3" />
       <motion.div
         className="absolute block h-1 w-10 bg-white"
         style={{
@@ -135,6 +145,5 @@ const SOCIAL_CTAS = [
   { Component: SiLinkedin, href: "#" },
   { Component: SiYoutube, href: "#" },
 ];
-
 
 export default Example;

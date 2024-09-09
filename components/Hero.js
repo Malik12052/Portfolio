@@ -1,5 +1,5 @@
-import { Stars } from "@react-three/drei";
 import { Canvas, useFrame } from "@react-three/fiber";
+import { Stars, Points, PointMaterial } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
 import { FiArrowRight } from "react-icons/fi";
 import 'animate.css';
@@ -31,10 +31,27 @@ export const AuroraHero = () => {
   const boxShadow = useMotionTemplate`0px 4px 24px ${color}`;
   const textGradient = useMotionTemplate`linear-gradient(45deg, ${color}, #fff)`;
 
+  // Particle Effects
+  const ParticleEffect = () => {
+    const pointsRef = useRef();
+
+    useFrame((state) => {
+      const { mouse } = state;
+      pointsRef.current.rotation.x = mouse.y * 0.1;
+      pointsRef.current.rotation.y = mouse.x * 0.1;
+    });
+
+    return (
+      <Points ref={pointsRef} limit={10000} range={100}>
+        <PointMaterial size={0.05} color="#13FFAA" />
+      </Points>
+    );
+  };
+
+  // Sphere Animation
   const SphereAnimation = () => {
     const sphereRef = useRef();
 
-    // Apply rotation to the sphere on all three axes
     useFrame(() => {
       sphereRef.current.rotation.x += 0.01;
       sphereRef.current.rotation.y += 0.01;
@@ -42,7 +59,7 @@ export const AuroraHero = () => {
     });
 
     return (
-      <a.points ref={sphereRef} position={[0, -5.25, 0]} scale={[1, 4, 1]}>
+      <a.points ref={sphereRef} position={[1, 0.25, 0]} scale={[1, 4, 1]}>
         <sphereGeometry args={[2, 35, 32]} />
         <a.pointsMaterial color="#13FFAA" size={0.1} /> {/* Soft teal color */}
       </a.points>
@@ -147,6 +164,7 @@ export const AuroraHero = () => {
         <Canvas>
           <Stars radius={350} count={1000} factor={70} fade speed={1} />
           <SphereAnimation />
+          <ParticleEffect />
         </Canvas>
       </div>
     </motion.section>
